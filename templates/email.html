@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refi Watch</title>
+</head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f1f5f9">
+<tr><td align="center" style="padding:24px 12px;">
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
+
+  {# ── HEADER ────────────────────────────────────────────── #}
+  <tr>
+    <td style="background:#0f172a;padding:28px 32px;border-radius:12px 12px 0 0;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td>
+            <div style="color:#ffffff;font-size:22px;font-weight:700;letter-spacing:3px;">REFI WATCH</div>
+            <div style="color:#94a3b8;font-size:12px;margin-top:4px;">{{ address }}</div>
+          </td>
+          <td align="right" style="vertical-align:top;">
+            <div style="color:#64748b;font-size:12px;">{{ report_date }}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  {# ── SIGNAL BANNER ─────────────────────────────────────── #}
+  <tr>
+    <td style="background:{{ signal.bg_color }};padding:24px 32px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="vertical-align:middle;">
+            <div style="font-size:20px;font-weight:700;color:{{ signal.text_color }};">
+              {{ signal.emoji }}&nbsp;&nbsp;{{ signal.headline }}
+            </div>
+            <div style="font-size:13px;color:{{ signal.subtext_color }};margin-top:6px;">
+              {{ signal.subtext }}
+            </div>
+          </td>
+          <td align="right" style="vertical-align:middle;padding-left:16px;white-space:nowrap;">
+            <div style="font-size:11px;color:{{ signal.subtext_color }};text-transform:uppercase;letter-spacing:1px;">Best rate for your profile</div>
+            <div style="font-size:32px;font-weight:700;color:{{ signal.text_color }};line-height:1.1;">{{ "%.3f"|format(best_lender.your_rate) }}%</div>
+            <div style="font-size:12px;color:{{ signal.subtext_color }};">vs your {{ "%.3f"|format(current_rate) }}% ARM</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  {# ── SECTION DIVIDER MACRO ─────────────────────────────── #}
+  {# ── [1] MARKET SNAPSHOT ───────────────────────────────── #}
+  <tr>
+    <td style="background:#ffffff;padding:24px 32px 16px;">
+      <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid #e2e8f0;padding-bottom:8px;margin-bottom:16px;">
+        [1] Market Snapshot
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td width="50%" style="vertical-align:top;">
+            <div style="font-size:12px;color:#64748b;">30-yr Fixed (Freddie Mac PMMS)</div>
+            <div style="font-size:26px;font-weight:700;color:#0f172a;">{{ "%.2f"|format(rate_30yr) }}%</div>
+          </td>
+          <td width="50%" style="vertical-align:top;">
+            <div style="font-size:12px;color:#64748b;">5/1 ARM Benchmark</div>
+            <div style="font-size:26px;font-weight:700;color:#0f172a;">{{ "%.2f"|format(rate_5_1_arm) }}%</div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding-top:16px;">
+            <div style="font-size:12px;color:#64748b;margin-bottom:6px;">4-week trend (5/1 ARM)</div>
+            <div style="font-family:monospace;font-size:14px;color:#334155;background:#f8fafc;padding:10px 14px;border-radius:6px;letter-spacing:1px;">
+              {{ sparkline }}
+            </div>
+            <div style="font-size:12px;color:#64748b;margin-top:6px;">{{ trend_summary }}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  {# ── [2] YOUR LOAN TODAY ────────────────────────────────── #}
+  <tr>
+    <td style="background:#ffffff;padding:16px 32px;border-top:1px solid #f1f5f9;">
+      <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid #e2e8f0;padding-bottom:8px;margin-bottom:16px;">
+        [2] Your Loan Today
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="4" border="0" style="font-size:13px;">
+        <tr>
+          <td style="color:#64748b;padding:3px 0;">Current balance</td>
+          <td align="right" style="color:#0f172a;font-weight:600;">${{ "{:,.0f}".format(loan.balance) }}</td>
+          <td style="color:#64748b;padding:3px 0;padding-left:24px;">Monthly payment</td>
+          <td align="right" style="color:#0f172a;font-weight:600;">${{ "{:,.0f}".format(loan.monthly_payment) }}</td>
+        </tr>
+        <tr>
+          <td style="color:#64748b;padding:3px 0;">LTV</td>
+          <td align="right" style="color:#0f172a;font-weight:600;">{{ "%.1f"|format(loan.ltv) }}%</td>
+          <td style="color:#64748b;padding:3px 0;padding-left:24px;">Equity</td>
+          <td align="right" style="color:#0f172a;font-weight:600;">${{ "{:,.0f}".format(loan.equity) }}</td>
+        </tr>
+        <tr>
+          <td style="color:#64748b;padding:3px 0;">ARM adjustment</td>
+          <td align="right" style="color:#0f172a;font-weight:600;">{{ loan.adjustment_date.strftime("%b %Y") }}</td>
+          <td style="color:#64748b;padding:3px 0;padding-left:24px;">Months away</td>
+          <td align="right" style="color:#0f172a;font-weight:600;">{{ loan.months_to_adjustment }} mo</td>
+        </tr>
+        {% if loan.months_to_ltv_65 is not none %}
+        <tr>
+          <td style="color:#64748b;padding:3px 0;">To 65% LTV organically</td>
+          <td align="right" style="color:#0f172a;font-weight:600;">{{ loan.months_to_ltv_65 }} mo</td>
+          <td style="color:#64748b;padding:3px 0;padding-left:24px;">To 60% LTV organically</td>
+          <td align="right" style="color:#0f172a;font-weight:600;">
+            {% if loan.months_to_ltv_60 %}{{ loan.months_to_ltv_60 }} mo{% else %}—{% endif %}
+          </td>
+        </tr>
+        {% endif %}
+      </table>
+      <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;padding:10px 14px;margin-top:14px;font-size:12px;color:#9a3412;">
+        ⚠&nbsp; Worst case at adjustment ({{ "%.2f"|format(loan.worst_case_rate) }}% cap):
+        monthly payment could reach <strong>${{ "{:,.0f}".format(loan.worst_case_payment) }}</strong> — {{ loan.months_to_adjustment }} months from now.
+      </div>
+    </td>
+  </tr>
+
+  {# ── [3] OPPORTUNITY SPECTRUM ───────────────────────────── #}
+  <tr>
+    <td style="background:#ffffff;padding:16px 32px;border-top:1px solid #f1f5f9;">
+      <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid #e2e8f0;padding-bottom:8px;margin-bottom:16px;">
+        [3] Opportunity Spectrum
+      </div>
+      <div style="font-size:12px;color:#64748b;margin-bottom:12px;">
+        If you refinanced TODAY at current balance (${{ "{:,.0f}".format(loan.balance) }}, no-cost refi):
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:13px;border-collapse:collapse;">
+        <tr style="background:#f8fafc;">
+          <th align="left" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Rate</th>
+          <th align="right" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Monthly Pmt</th>
+          <th align="right" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Mo. Savings</th>
+          <th align="right" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">30yr Savings</th>
+          <th align="center" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Signal</th>
+        </tr>
+        {% for row in spectrum %}
+        <tr style="border-bottom:1px solid #f1f5f9;{% if row.target_rate == best_lender.your_rate %}background:#f0fdf4;{% endif %}">
+          <td style="padding:9px 12px;font-weight:{% if row.target_rate == best_lender.your_rate %}700{% else %}400{% endif %};color:#0f172a;">
+            {{ "%.2f"|format(row.target_rate) }}%{% if row.target_rate == best_lender.your_rate %} ← best est.{% endif %}
+          </td>
+          <td align="right" style="padding:9px 12px;color:#0f172a;">${{ "{:,.0f}".format(row.new_payment) }}</td>
+          <td align="right" style="padding:9px 12px;color:{% if row.monthly_savings > 0 %}#15803d{% else %}#dc2626{% endif %};font-weight:600;">
+            {% if row.monthly_savings > 0 %}+${{ "{:,.0f}".format(row.monthly_savings) }}{% else %}−${{ "{:,.0f}".format(row.monthly_savings|abs) }}{% endif %}
+          </td>
+          <td align="right" style="padding:9px 12px;color:#64748b;">
+            {% if row.lifetime_savings > 0 %}+${{ "{:,.0f}".format(row.lifetime_savings) }}{% else %}—{% endif %}
+          </td>
+          <td align="center" style="padding:9px 12px;">
+            {% if row.monthly_savings >= 400 %}🟢{% elif row.monthly_savings >= 150 %}🟡{% elif row.monthly_savings > 0 %}🟡{% else %}🔴{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <div style="font-size:11px;color:#94a3b8;margin-top:8px;">Estimates assume no-cost refi (closing costs rolled into rate). Rates are estimates based on market benchmarks.</div>
+    </td>
+  </tr>
+
+  {# ── [4] LENDER COMPARISON ──────────────────────────────── #}
+  <tr>
+    <td style="background:#ffffff;padding:16px 32px;border-top:1px solid #f1f5f9;">
+      <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid #e2e8f0;padding-bottom:8px;margin-bottom:16px;">
+        [4] Lender Comparison
+      </div>
+      <div style="font-size:12px;color:#64748b;margin-bottom:12px;">
+        Relationship assets modeled: ${{ "{:,.0f}".format(relationship_assets) }}
+        &nbsp;·&nbsp; Max available: ${{ "{:,.0f}".format(relationship_assets_max) }}
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:13px;border-collapse:collapse;">
+        <tr style="background:#f8fafc;">
+          <th align="left" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Lender</th>
+          <th align="right" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Market Est.</th>
+          <th align="right" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Relationship</th>
+          <th align="right" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Your Rate</th>
+          <th align="right" style="padding:8px 12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Mo. Savings</th>
+        </tr>
+        {% for lender in lenders %}
+        <tr style="border-bottom:1px solid #f1f5f9;{% if loop.first %}background:#f0fdf4;{% endif %}">
+          <td style="padding:9px 12px;color:#0f172a;font-weight:{% if loop.first %}700{% else %}400{% endif %};">
+            {{ lender.name }}{% if loop.first %} 🏆{% endif %}
+          </td>
+          <td align="right" style="padding:9px 12px;color:#64748b;">{{ "%.3f"|format(lender.base_rate) }}%</td>
+          <td align="right" style="padding:9px 12px;color:{% if lender.relationship_discount > 0 %}#15803d{% else %}#94a3b8{% endif %};">
+            {% if lender.relationship_discount > 0 %}−{{ "%.3f"|format(lender.relationship_discount) }}%{% else %}—{% endif %}
+          </td>
+          <td align="right" style="padding:9px 12px;color:#0f172a;font-weight:600;">{{ "%.3f"|format(lender.your_rate) }}%</td>
+          <td align="right" style="padding:9px 12px;">
+            {% set savings = loan.monthly_payment - (loan.balance * lender.your_rate / 100 / 12 + loan.balance * lender.your_rate / 100 / 12 * 0.05) %}
+            {% set mo_sav = loan.monthly_payment - (loan.balance * (lender.your_rate/100/12) * (1 + lender.your_rate/100/12)**360 / ((1 + lender.your_rate/100/12)**360 - 1)) %}
+            <span style="color:{% if mo_sav > 0 %}#15803d{% else %}#dc2626{% endif %};font-weight:600;">
+              {% if mo_sav > 0 %}+${{ "{:,.0f}".format(mo_sav) }}{% else %}−${{ "{:,.0f}".format(mo_sav|abs) }}{% endif %}
+            </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% if relationship_assets < relationship_assets_max %}
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;margin-top:14px;font-size:12px;color:#1e40af;">
+        💡 Moving assets from ${{ "{:,.0f}".format(relationship_assets) }} → ${{ "{:,.0f}".format(relationship_assets_max) }} at your top lender
+        could reduce your rate by an additional 0.125–0.25%.
+      </div>
+      {% endif %}
+    </td>
+  </tr>
+
+  {# ── [5] REFINANCE AMOUNT OPTIMIZER ────────────────────── #}
+  <tr>
+    <td style="background:#ffffff;padding:16px 32px;border-top:1px solid #f1f5f9;">
+      <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid #e2e8f0;padding-bottom:8px;margin-bottom:16px;">
+        [5] Refinance Amount Optimizer
+      </div>
+      <div style="font-size:12px;color:#64748b;margin-bottom:12px;">
+        At best estimated rate {{ "%.3f"|format(best_lender.your_rate) }}% · Tax bracket {{ "%.1f"|format(combined_tax_rate * 100) }}% (fed + CA) · Deduction limit $750,000
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:12px;border-collapse:collapse;">
+        <tr style="background:#f8fafc;">
+          <th align="right" style="padding:7px 10px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Refi Amt</th>
+          <th align="right" style="padding:7px 10px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Cash to Close</th>
+          <th align="right" style="padding:7px 10px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">LTV</th>
+          <th align="right" style="padding:7px 10px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Tax Deduct.</th>
+          <th align="right" style="padding:7px 10px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Monthly Pmt</th>
+          <th align="right" style="padding:7px 10px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;">Mo. Savings</th>
+        </tr>
+        {% for s in amount_scenarios %}
+        <tr style="border-bottom:1px solid #f1f5f9;{% if s.is_sweet_spot %}background:#fefce8;{% elif s.is_current %}background:#f0fdf4;{% endif %}">
+          <td align="right" style="padding:8px 10px;color:#0f172a;font-weight:{% if s.is_sweet_spot or s.is_current %}700{% else %}400{% endif %};">
+            ${{ "{:,.0f}".format(s.amount) }}{% if s.is_sweet_spot %} ★ tax sweet spot{% elif s.is_current %} ← today{% endif %}
+          </td>
+          <td align="right" style="padding:8px 10px;color:{% if s.cash_needed == 0 %}#15803d{% else %}#dc2626{% endif %};">
+            {% if s.cash_needed == 0 %}$0{% else %}-${{ "{:,.0f}".format(s.cash_needed) }}{% endif %}
+          </td>
+          <td align="right" style="padding:8px 10px;color:#0f172a;">{{ "%.1f"|format(s.ltv) }}%</td>
+          <td align="right" style="padding:8px 10px;color:{% if s.deductibility_pct >= 99 %}#15803d{% else %}#92400e{% endif %};">
+            {{ "%.0f"|format(s.deductibility_pct) }}%
+          </td>
+          <td align="right" style="padding:8px 10px;color:#0f172a;">${{ "{:,.0f}".format(s.new_payment) }}</td>
+          <td align="right" style="padding:8px 10px;color:{% if s.monthly_savings >= 0 %}#15803d{% else %}#dc2626{% endif %};font-weight:600;">
+            {% if s.monthly_savings >= 0 %}+${{ "{:,.0f}".format(s.monthly_savings) }}{% else %}−${{ "{:,.0f}".format(s.monthly_savings|abs) }}{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <div style="background:#fefce8;border:1px solid #fde68a;border-radius:6px;padding:10px 14px;margin-top:14px;font-size:12px;color:#78350f;">
+        <strong>Tax note:</strong> At ${{ "{:,.0f}".format(loan.balance) }}, ~{{ "%.0f"|format(100 - amount_scenarios[0].deductibility_pct) }}% of your interest
+        is NOT deductible — costing ~${{ "{:,.0f}".format(amount_scenarios[0].annual_tax_cost_saved) }}/yr in extra taxes.
+        Refinancing to $750k makes all interest deductible but requires ${{ "{:,.0f}".format(amount_scenarios[-1].cash_needed) }} cash to close.
+        Opportunity cost of that cash at 7%: ~${{ "{:,.0f}".format(amount_scenarios[-1].opportunity_cost_monthly) }}/mo.
+      </div>
+    </td>
+  </tr>
+
+  {# ── [6] BROKER LIST ────────────────────────────────────── #}
+  <tr>
+    <td style="background:#ffffff;padding:16px 32px;border-top:1px solid #f1f5f9;">
+      <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid #e2e8f0;padding-bottom:8px;margin-bottom:16px;">
+        [6] Mortgage Brokers — Alameda County
+      </div>
+      <div style="font-size:12px;color:#64748b;margin-bottom:12px;">
+        Last refreshed: {{ brokers_last_updated }}
+        &nbsp;·&nbsp; Source: {{ brokers_source }}
+        &nbsp;·&nbsp; Next refresh: {{ brokers_next_refresh }}
+      </div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:13px;">
+        {% for broker in brokers %}
+        <tr style="border-bottom:1px solid #f1f5f9;">
+          <td style="padding:10px 0;">
+            <div style="font-weight:600;color:#0f172a;">{{ broker.name }}</div>
+            <div style="font-size:12px;color:#64748b;">{{ broker.contact }}</div>
+            <div style="font-size:12px;color:#64748b;margin-top:2px;">{{ broker.specialty }}</div>
+          </td>
+          <td align="right" style="padding:10px 0;white-space:nowrap;">
+            <div style="font-size:15px;color:#f59e0b;">{{ "★" * (broker.rating | int) }}{% if broker.rating % 1 >= 0.5 %}½{% endif %}</div>
+            <div style="font-size:11px;color:#94a3b8;">{{ broker.rating }} · {{ broker.reviews }} reviews</div>
+            <div style="margin-top:4px;"><a href="{{ broker.google_maps }}" style="font-size:11px;color:#3b82f6;text-decoration:none;">View on Google Maps →</a></div>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </td>
+  </tr>
+
+  {# ── [7] THIS WEEK'S ACTION ─────────────────────────────── #}
+  <tr>
+    <td style="background:#ffffff;padding:16px 32px 24px;border-top:1px solid #f1f5f9;">
+      <div style="font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid #e2e8f0;padding-bottom:8px;margin-bottom:16px;">
+        [7] This Week's Action
+      </div>
+      <div style="font-size:14px;color:#0f172a;line-height:1.7;">{{ action_text }}</div>
+    </td>
+  </tr>
+
+  {# ── [8] DRAFT EMAIL (green only) ───────────────────────── #}
+  {% if signal.label == "GREEN" %}
+  <tr>
+    <td style="background:#f0fdf4;padding:16px 32px 24px;border-top:2px solid #bbf7d0;">
+      <div style="font-size:11px;font-weight:600;color:#15803d;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid #bbf7d0;padding-bottom:8px;margin-bottom:16px;">
+        [8] Draft Outreach Email — {{ best_lender.name }}
+      </div>
+      <div style="background:#ffffff;border:1px solid #d1fae5;border-radius:8px;padding:16px 20px;font-size:13px;color:#0f172a;line-height:1.8;">
+        <div style="margin-bottom:8px;"><strong>To:</strong> [{{ best_lender.name }} home lending officer]</div>
+        <div style="margin-bottom:16px;"><strong>Subject:</strong> {{ draft_email.subject }}</div>
+        <pre style="font-family:inherit;font-size:13px;white-space:pre-wrap;margin:0;">{{ draft_email.body }}</pre>
+      </div>
+    </td>
+  </tr>
+  {% endif %}
+
+  {# ── FOOTER ─────────────────────────────────────────────── #}
+  <tr>
+    <td style="background:#1e293b;padding:20px 32px;border-radius:0 0 12px 12px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="color:#64748b;font-size:12px;">
+            Refi Watch &nbsp;·&nbsp; Next email: {{ next_email_date }}
+          </td>
+          <td align="right" style="color:#64748b;font-size:12px;">
+            Update config: <code style="color:#94a3b8;">config/loan.json</code>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

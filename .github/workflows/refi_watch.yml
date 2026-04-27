@@ -1,0 +1,43 @@
+name: Refi Watch — Weekly Email
+
+on:
+  schedule:
+    # Every Friday at 7:00 AM Pacific Time (15:00 UTC)
+    - cron: "0 15 * * 5"
+  workflow_dispatch:  # Allow manual trigger from GitHub Actions UI
+
+permissions:
+  contents: write   # Needed to push updated data/ files back to repo
+
+jobs:
+  send-refi-watch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Refi Watch
+        env:
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+        run: python main.py
+
+      - name: Commit updated rate history and broker data
+        run: |
+          git config user.name "refi-watch[bot]"
+          git config user.email "refi-watch@users.noreply.github.com"
+          git add data/rates_history.json data/brokers.json
+          git diff --staged --quiet || git commit -m "data: weekly update $(date +%Y-%m-%d)"
+          git push

@@ -1,0 +1,46 @@
+{
+  "last_updated": "2026-04-27",
+  "source": "static_fallback",
+  "brokers": [
+    {
+      "name": "RPM Mortgage",
+      "contact": "Fremont, CA",
+      "rating": 4.9,
+      "reviews": 340,
+      "specialty": "ARM, Bay Area refinance",
+      "google_maps": "https://maps.google.com/?q=RPM+Mortgage+Fremont+CA"
+    },
+    {
+      "name": "Bay Equity Home Loans",
+      "contact": "Newark / Fremont, CA",
+      "rating": 4.8,
+      "reviews": 210,
+      "specialty": "Purchase & refi, Bay Area",
+      "google_maps": "https://maps.google.com/?q=Bay+Equity+Home+Loans+Fremont+CA"
+    },
+    {
+      "name": "CrossCountry Mortgage",
+      "contact": "San Jose, CA",
+      "rating": 4.8,
+      "reviews": 185,
+      "specialty": "Conforming, jumbo, ARM",
+      "google_maps": "https://maps.google.com/?q=CrossCountry+Mortgage+San+Jose+CA"
+    },
+    {
+      "name": "Guaranteed Rate",
+      "contact": "Oakland / Fremont, CA",
+      "rating": 4.7,
+      "reviews": 230,
+      "specialty": "Digital-first, competitive rates",
+      "google_maps": "https://maps.google.com/?q=Guaranteed+Rate+Oakland+CA"
+    },
+    {
+      "name": "LoanDepot",
+      "contact": "Fremont, CA",
+      "rating": 4.7,
+      "reviews": 160,
+      "specialty": "CA-headquartered, refinance specialists",
+      "google_maps": "https://maps.google.com/?q=LoanDepot+Fremont+CA"
+    }
+  ]
+}

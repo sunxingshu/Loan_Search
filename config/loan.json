@@ -1,0 +1,76 @@
+{
+  "loan": {
+    "original_amount": 930000,
+    "rate": 5.25,
+    "arm_type": "5/1",
+    "close_date": "2025-12-08",
+    "first_payment_date": "2026-02-01",
+    "term_years": 30,
+    "arm_adjustment_date": "2030-12-01",
+    "rate_caps": {
+      "initial": 2.0,
+      "periodic": 2.0,
+      "lifetime": 5.0
+    },
+    "loan_number": "4792067474",
+    "servicer": "Citi"
+  },
+  "property": {
+    "address": "6216 Escallonia Dr, Newark, CA 94560",
+    "estimated_value": 1400000,
+    "county": "Alameda",
+    "state": "CA"
+  },
+  "borrower": {
+    "relationship_assets_current": 500000,
+    "relationship_assets_max": 1000000,
+    "federal_tax_rate": 0.37,
+    "state_tax_rate": 0.133,
+    "itemize_deductions": true,
+    "mortgage_deduction_limit": 750000
+  },
+  "lenders": [
+    {
+      "name": "Citi",
+      "market_spread": 0.10,
+      "relationship_discount": 0.25,
+      "notes": "Current servicer — relationship discount applies at $500k+ assets"
+    },
+    {
+      "name": "Chase",
+      "market_spread": 0.10,
+      "relationship_discount": 0.125,
+      "notes": "Private Client tier at $500k+"
+    },
+    {
+      "name": "Wells Fargo",
+      "market_spread": 0.10,
+      "relationship_discount": 0.125,
+      "notes": "Premier tier at $500k+"
+    },
+    {
+      "name": "Better.com",
+      "market_spread": -0.10,
+      "relationship_discount": 0.0,
+      "notes": "Digital lender — no relationship discount, competitive pricing"
+    },
+    {
+      "name": "LoanDepot",
+      "market_spread": 0.15,
+      "relationship_discount": 0.0,
+      "notes": "CA-headquartered lender"
+    }
+  ],
+  "email": {
+    "to": "YOUR_EMAIL@gmail.com",
+    "subject_prefix": "Refi Watch"
+  },
+  "brokers": {
+    "search_location": "Newark, CA 94560",
+    "search_radius_meters": 40000,
+    "min_rating": 4.5,
+    "min_reviews": 50,
+    "max_results": 5,
+    "refresh_days": 30
+  }
+}
