@@ -68,7 +68,8 @@ def main(dry_run: bool = False, output_file: str | None = None) -> None:
 
     # ── 5. Brokers ───────────────────────────────────────────────
     google_key = os.getenv("GOOGLE_PLACES_API_KEY", "")
-    brokers_data = get_brokers(config, google_key)
+    hunter_key = os.getenv("HUNTER_API_KEY", "")
+    brokers_data = get_brokers(config, google_key, hunter_key)
     print(f"Brokers: {len(brokers_data.get('brokers', []))} loaded (source: {brokers_data.get('source')})")
 
     # ── 6. Compose email ─────────────────────────────────────────

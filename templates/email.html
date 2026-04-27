@@ -267,22 +267,70 @@
         &nbsp;·&nbsp; Source: {{ brokers_source }}
         &nbsp;·&nbsp; Next refresh: {{ brokers_next_refresh }}
       </div>
-      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:13px;">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:13px;border-collapse:collapse;">
         {% for broker in brokers %}
-        <tr style="border-bottom:1px solid #f1f5f9;">
-          <td style="padding:10px 0;">
-            <div style="font-weight:600;color:#0f172a;">{{ broker.name }}</div>
-            <div style="font-size:12px;color:#64748b;">{{ broker.contact }}</div>
-            <div style="font-size:12px;color:#64748b;margin-top:2px;">{{ broker.specialty }}</div>
-          </td>
-          <td align="right" style="padding:10px 0;white-space:nowrap;">
-            <div style="font-size:15px;color:#f59e0b;">{{ "★" * (broker.rating | int) }}{% if broker.rating % 1 >= 0.5 %}½{% endif %}</div>
-            <div style="font-size:11px;color:#94a3b8;">{{ broker.rating }} · {{ broker.reviews }} reviews</div>
-            <div style="margin-top:4px;"><a href="{{ broker.google_maps }}" style="font-size:11px;color:#3b82f6;text-decoration:none;">View on Google Maps →</a></div>
+        <tr style="border-bottom:1px solid #e2e8f0;">
+          <td style="padding:14px 0;" colspan="2">
+
+            {# — Name + rating row — #}
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td>
+                  <span style="font-weight:700;font-size:14px;color:#0f172a;">{{ broker.name }}</span>
+                  &nbsp;<span style="font-size:12px;color:#64748b;">{{ broker.specialty }}</span>
+                </td>
+                <td align="right" style="white-space:nowrap;">
+                  <span style="font-size:14px;color:#f59e0b;">{{ "★" * (broker.rating | int) }}{% if broker.rating % 1 >= 0.5 %}½{% endif %}</span>
+                  <span style="font-size:11px;color:#94a3b8;">&nbsp;{{ broker.rating }} ({{ broker.reviews }} reviews)</span>
+                </td>
+              </tr>
+            </table>
+
+            {# — Contact details row — #}
+            <table width="100%" cellpadding="0" cellspacing="4" border="0" style="margin-top:8px;font-size:12px;">
+              <tr>
+                {% if broker.phone %}
+                <td width="33%" style="color:#334155;">
+                  <span style="color:#94a3b8;">📞</span>&nbsp;
+                  <a href="tel:{{ broker.phone }}" style="color:#334155;text-decoration:none;">{{ broker.phone }}</a>
+                </td>
+                {% endif %}
+                {% if broker.email %}
+                <td width="34%" style="color:#334155;">
+                  <span style="color:#94a3b8;">✉</span>&nbsp;
+                  <a href="mailto:{{ broker.email }}" style="color:#3b82f6;text-decoration:none;">{{ broker.email }}</a>
+                </td>
+                {% elif broker.website %}
+                <td width="34%" style="color:#94a3b8;">
+                  <span>✉</span>&nbsp;Contact via website
+                </td>
+                {% endif %}
+                {% if broker.website %}
+                <td width="33%" align="right">
+                  <a href="{{ broker.website }}" style="font-size:12px;color:#3b82f6;text-decoration:none;">🌐 Website →</a>
+                  &nbsp;&nbsp;
+                  <a href="{{ broker.google_maps }}" style="font-size:12px;color:#3b82f6;text-decoration:none;">📍 Maps →</a>
+                </td>
+                {% endif %}
+              </tr>
+            </table>
+
+            {# — Address + source note — #}
+            <div style="margin-top:6px;font-size:11px;color:#94a3b8;">
+              {{ broker.address }}
+              {% if broker.contact_source == "static" %}
+              &nbsp;·&nbsp; <em>Contact info from public listing — verify before sending</em>
+              {% endif %}
+            </div>
+
           </td>
         </tr>
         {% endfor %}
       </table>
+      <div style="font-size:11px;color:#94a3b8;margin-top:8px;">
+        Contact data sources: Google Places (phone/website){% if brokers_source == "Google Places" %} + Hunter.io (email){% endif %}.
+        Always confirm details before reaching out.
+      </div>
     </td>
   </tr>
 
