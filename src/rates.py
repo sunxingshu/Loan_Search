@@ -36,16 +36,30 @@ def _fetch_fred_series(series_id: str, api_key: str) -> float | None:
 
 
 def fetch_rates(fred_api_key: str) -> dict:
-    """Fetch current 30yr fixed and 5/1 ARM rates from FRED."""
+    """Fetch current 30yr fixed and 5/1 ARM rates from FRED.
+
+    Falls back to last known rates from history if FRED is unreachable.
+    """
     rate_30yr = _fetch_fred_series("MORTGAGE30US", fred_api_key)
-    # MORTGAGE5US is the Freddie Mac 5/1 ARM series on FRED
     rate_5_1 = _fetch_fred_series("MORTGAGE5US", fred_api_key)
 
     if rate_5_1 is None and rate_30yr is not None:
         rate_5_1 = round(rate_30yr - ARM_SPREAD_FROM_30YR, 3)
         arm_source = "derived"
-    else:
+    elif rate_5_1 is not None:
         arm_source = "fred"
+    else:
+        arm_source = "unavailable"
+
+    # If FRED completely unavailable, fall back to last known rates from history
+    if rate_30yr is None:
+        history = load_rate_history()
+        last = next((h for h in reversed(history) if h.get("rate_30yr_fixed")), None)
+        if last:
+            rate_30yr = last["rate_30yr_fixed"]
+            rate_5_1 = last.get("rate_5_1_arm") or round(rate_30yr - ARM_SPREAD_FROM_30YR, 3)
+            arm_source = "last_known"
+            print(f"WARNING: FRED unavailable — using last known rates from {last['date']}")
 
     return {
         "date": date.today().isoformat(),

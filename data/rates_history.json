@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2026-04-10",
+    "rate_30yr_fixed": 6.83,
+    "rate_5_1_arm": 6.01,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-04-17",
+    "rate_30yr_fixed": 6.79,
+    "rate_5_1_arm": 5.96,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-04-24",
+    "rate_30yr_fixed": 6.76,
+    "rate_5_1_arm": 5.94,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-05-01",
+    "rate_30yr_fixed": 6.72,
+    "rate_5_1_arm": 5.9,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-05-09",
+    "rate_30yr_fixed": 6.72,
+    "rate_5_1_arm": 5.9,
+    "arm_source": "last_known"
+  }
+]
