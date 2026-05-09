@@ -83,6 +83,10 @@ def compose_email(
         next_refresh = "—"
         last_updated_fmt = last_updated
 
+    # Generate rate chart (gracefully skipped if matplotlib unavailable)
+    from src.charts import generate_chart
+    chart_b64 = generate_chart(rate_history, config["loan"]["rate"])
+
     html = template.render(
         # Header
         address=config["property"]["address"],
@@ -97,6 +101,7 @@ def compose_email(
         rate_5_1_arm=current_rates.get("rate_5_1_arm") or 0,
         sparkline=_sparkline(trend_data),
         trend_summary=_trend_summary(trend_data),
+        rate_chart_b64=chart_b64,
         # Loan
         loan=loan_state,
         # Opportunity

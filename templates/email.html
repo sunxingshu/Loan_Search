@@ -69,12 +69,22 @@
           </td>
         </tr>
         <tr>
-          <td colspan="2" style="padding-top:16px;">
-            <div style="font-size:12px;color:#64748b;margin-bottom:6px;">4-week trend (5/1 ARM)</div>
-            <div style="font-family:monospace;font-size:14px;color:#334155;background:#f8fafc;padding:10px 14px;border-radius:6px;letter-spacing:1px;">
-              {{ sparkline }}
-            </div>
-            <div style="font-size:12px;color:#64748b;margin-top:6px;">{{ trend_summary }}</div>
+          <td colspan="2" style="padding-top:18px;">
+            {% if rate_chart_b64 %}
+              <img src="data:image/png;base64,{{ rate_chart_b64 }}"
+                   alt="Rate trend chart"
+                   width="536"
+                   style="display:block;width:100%;max-width:536px;border-radius:8px;border:1px solid #e2e8f0;" />
+              <div style="font-size:11px;color:#94a3b8;margin-top:6px;">
+                {{ trend_summary }}
+              </div>
+            {% else %}
+              <div style="font-size:12px;color:#64748b;margin-bottom:6px;">4-week trend (5/1 ARM)</div>
+              <div style="font-family:monospace;font-size:14px;color:#334155;background:#f8fafc;padding:10px 14px;border-radius:6px;letter-spacing:1px;">
+                {{ sparkline }}
+              </div>
+              <div style="font-size:12px;color:#64748b;margin-top:6px;">{{ trend_summary }}</div>
+            {% endif %}
           </td>
         </tr>
       </table>
