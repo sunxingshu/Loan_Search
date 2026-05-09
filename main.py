@@ -65,6 +65,10 @@ def main(dry_run: bool = False, output_file: str | None = None) -> None:
     if not history or history[-1]["date"] != current_rates["date"]:
         history.append(current_rates)
         log(f"      appended today's rates to history")
+    elif current_rates.get("arm_source") not in ("last_known", "unavailable"):
+        old_source = history[-1].get("arm_source", "?")
+        history[-1] = current_rates
+        log(f"      updated today's entry with fresh FRED data (replaced: {old_source})")
     else:
         log(f"      today's rates already in history — skipping duplicate")
     history = history[-52:]
