@@ -26,7 +26,7 @@ def main(dry_run: bool = False, output_file: str | None = None) -> None:
         compute_signal,
         draft_outreach_email,
     )
-    from src.rates import compute_lender_rates, fetch_rates, load_rate_history, save_rate_history
+    from src.rates import backfill_rate_history, compute_lender_rates, fetch_rates, load_rate_history, save_rate_history
 
     log("=" * 60)
     log("REFI WATCH — starting run")
@@ -62,15 +62,24 @@ def main(dry_run: bool = False, output_file: str | None = None) -> None:
 
     history = load_rate_history()
     log(f"      history entries so far: {len(history)}")
-    if not history or history[-1]["date"] != current_rates["date"]:
-        history.append(current_rates)
-        log(f"      appended today's rates to history")
-    elif current_rates.get("arm_source") not in ("last_known", "unavailable"):
-        old_source = history[-1].get("arm_source", "?")
-        history[-1] = current_rates
-        log(f"      updated today's entry with fresh FRED data (replaced: {old_source})")
+    fred_reachable = current_rates.get("arm_source") not in ("last_known", "unavailable")
+    if fred_reachable and fred_key:
+        log("      FRED reachable — refreshing full 52-week history with real data...")
+        fresh = backfill_rate_history(fred_key)
+        if fresh:
+            history = fresh
+            log(f"      history refreshed: {len(history)} real FRED data points")
+        else:
+            log("      FRED backfill returned empty — keeping existing history")
+            if not history or history[-1]["date"] != current_rates["date"]:
+                history.append(current_rates)
     else:
-        log(f"      today's rates already in history — skipping duplicate")
+        # FRED unavailable — append/update using existing history
+        if not history or history[-1]["date"] != current_rates["date"]:
+            history.append(current_rates)
+            log(f"      appended today's rates to history")
+        else:
+            log(f"      today's rates already in history — skipping duplicate")
     history = history[-52:]
     save_rate_history(history)
     log(f"      history saved  ({len(history)} weeks stored)")

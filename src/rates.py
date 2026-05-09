@@ -69,6 +69,56 @@ def fetch_rates(fred_api_key: str) -> dict:
     }
 
 
+def _fetch_fred_series_history(series_id: str, api_key: str, start_date: str) -> dict[str, float]:
+    """Fetch all weekly observations for a FRED series since start_date."""
+    params = {
+        "series_id": series_id,
+        "api_key": api_key,
+        "file_type": "json",
+        "sort_order": "asc",
+        "observation_start": start_date,
+    }
+    try:
+        resp = requests.get(FRED_URL, params=params, timeout=15)
+        resp.raise_for_status()
+        return {
+            o["date"]: float(o["value"])
+            for o in resp.json().get("observations", [])
+            if o["value"] != "."
+        }
+    except Exception:
+        return {}
+
+
+def backfill_rate_history(fred_api_key: str, weeks: int = 52) -> list[dict]:
+    """Fetch real FRED data for the past `weeks` weeks.
+
+    Returns sorted weekly history entries, or [] if FRED is unreachable.
+    MORTGAGE5US is used when available; otherwise ARM is derived from 30yr.
+    """
+    start_date = (date.today() - timedelta(weeks=weeks)).isoformat()
+    obs30 = _fetch_fred_series_history("MORTGAGE30US", fred_api_key, start_date)
+    if not obs30:
+        return []
+    obs5 = _fetch_fred_series_history("MORTGAGE5US", fred_api_key, start_date)
+
+    entries = []
+    for date_str, rate30 in sorted(obs30.items()):
+        rate5 = obs5.get(date_str)
+        if rate5 is not None:
+            arm_source = "fred"
+        else:
+            rate5 = round(rate30 - ARM_SPREAD_FROM_30YR, 3)
+            arm_source = "derived"
+        entries.append({
+            "date": date_str,
+            "rate_30yr_fixed": rate30,
+            "rate_5_1_arm": rate5,
+            "arm_source": arm_source,
+        })
+    return entries
+
+
 def load_rate_history() -> list[dict]:
     if not HISTORY_FILE.exists():
         return []
