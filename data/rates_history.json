@@ -1,164 +1,314 @@
 [
   {
-    "date": "2025-11-07",
-    "rate_30yr_fixed": 6.79,
-    "rate_5_1_arm": 5.92,
+    "date": "2025-05-15",
+    "rate_30yr_fixed": 6.81,
+    "rate_5_1_arm": 5.935,
     "arm_source": "derived"
   },
   {
-    "date": "2025-11-14",
-    "rate_30yr_fixed": 6.84,
-    "rate_5_1_arm": 5.97,
+    "date": "2025-05-22",
+    "rate_30yr_fixed": 6.86,
+    "rate_5_1_arm": 5.985,
     "arm_source": "derived"
   },
   {
-    "date": "2025-11-21",
-    "rate_30yr_fixed": 6.77,
-    "rate_5_1_arm": 5.9,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2025-11-28",
-    "rate_30yr_fixed": 6.69,
-    "rate_5_1_arm": 5.82,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2025-12-05",
-    "rate_30yr_fixed": 6.67,
-    "rate_5_1_arm": 5.8,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2025-12-12",
-    "rate_30yr_fixed": 6.72,
-    "rate_5_1_arm": 5.85,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2025-12-19",
-    "rate_30yr_fixed": 6.75,
-    "rate_5_1_arm": 5.88,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2025-12-26",
-    "rate_30yr_fixed": 6.73,
-    "rate_5_1_arm": 5.86,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-01-02",
-    "rate_30yr_fixed": 6.91,
-    "rate_5_1_arm": 6.04,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-01-09",
-    "rate_30yr_fixed": 7.04,
-    "rate_5_1_arm": 6.17,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-01-16",
-    "rate_30yr_fixed": 7.04,
-    "rate_5_1_arm": 6.17,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-01-23",
-    "rate_30yr_fixed": 7.02,
-    "rate_5_1_arm": 6.15,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-01-30",
-    "rate_30yr_fixed": 6.95,
-    "rate_5_1_arm": 6.08,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-02-06",
+    "date": "2025-05-29",
     "rate_30yr_fixed": 6.89,
-    "rate_5_1_arm": 6.02,
+    "rate_5_1_arm": 6.015,
     "arm_source": "derived"
   },
   {
-    "date": "2026-02-13",
-    "rate_30yr_fixed": 6.87,
-    "rate_5_1_arm": 6.0,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-02-20",
+    "date": "2025-06-05",
     "rate_30yr_fixed": 6.85,
-    "rate_5_1_arm": 5.98,
+    "rate_5_1_arm": 5.975,
     "arm_source": "derived"
   },
   {
-    "date": "2026-02-27",
-    "rate_30yr_fixed": 6.76,
-    "rate_5_1_arm": 5.89,
+    "date": "2025-06-12",
+    "rate_30yr_fixed": 6.84,
+    "rate_5_1_arm": 5.965,
     "arm_source": "derived"
   },
   {
-    "date": "2026-03-06",
+    "date": "2025-06-18",
+    "rate_30yr_fixed": 6.81,
+    "rate_5_1_arm": 5.935,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-06-26",
+    "rate_30yr_fixed": 6.77,
+    "rate_5_1_arm": 5.895,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-07-03",
     "rate_30yr_fixed": 6.67,
-    "rate_5_1_arm": 5.8,
+    "rate_5_1_arm": 5.795,
     "arm_source": "derived"
   },
   {
-    "date": "2026-03-13",
-    "rate_30yr_fixed": 6.65,
-    "rate_5_1_arm": 5.78,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-03-20",
-    "rate_30yr_fixed": 6.67,
-    "rate_5_1_arm": 5.8,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-03-27",
-    "rate_30yr_fixed": 6.7,
-    "rate_5_1_arm": 5.83,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-04-03",
-    "rate_30yr_fixed": 6.8,
-    "rate_5_1_arm": 5.93,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-04-10",
-    "rate_30yr_fixed": 6.83,
-    "rate_5_1_arm": 5.96,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-04-17",
-    "rate_30yr_fixed": 6.79,
-    "rate_5_1_arm": 5.92,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-04-24",
-    "rate_30yr_fixed": 6.76,
-    "rate_5_1_arm": 5.89,
-    "arm_source": "derived"
-  },
-  {
-    "date": "2026-05-01",
+    "date": "2025-07-10",
     "rate_30yr_fixed": 6.72,
-    "rate_5_1_arm": 5.85,
+    "rate_5_1_arm": 5.845,
     "arm_source": "derived"
   },
   {
-    "date": "2026-05-09",
+    "date": "2025-07-17",
+    "rate_30yr_fixed": 6.75,
+    "rate_5_1_arm": 5.875,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-07-24",
+    "rate_30yr_fixed": 6.74,
+    "rate_5_1_arm": 5.865,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-07-31",
+    "rate_30yr_fixed": 6.72,
+    "rate_5_1_arm": 5.845,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-08-07",
+    "rate_30yr_fixed": 6.63,
+    "rate_5_1_arm": 5.755,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-08-14",
+    "rate_30yr_fixed": 6.58,
+    "rate_5_1_arm": 5.705,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-08-21",
+    "rate_30yr_fixed": 6.58,
+    "rate_5_1_arm": 5.705,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-08-28",
+    "rate_30yr_fixed": 6.56,
+    "rate_5_1_arm": 5.685,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-09-04",
+    "rate_30yr_fixed": 6.5,
+    "rate_5_1_arm": 5.625,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-09-11",
+    "rate_30yr_fixed": 6.35,
+    "rate_5_1_arm": 5.475,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-09-18",
+    "rate_30yr_fixed": 6.26,
+    "rate_5_1_arm": 5.385,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-09-25",
+    "rate_30yr_fixed": 6.3,
+    "rate_5_1_arm": 5.425,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-10-02",
+    "rate_30yr_fixed": 6.34,
+    "rate_5_1_arm": 5.465,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-10-09",
+    "rate_30yr_fixed": 6.3,
+    "rate_5_1_arm": 5.425,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-10-16",
+    "rate_30yr_fixed": 6.27,
+    "rate_5_1_arm": 5.395,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-10-23",
+    "rate_30yr_fixed": 6.19,
+    "rate_5_1_arm": 5.315,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-10-30",
+    "rate_30yr_fixed": 6.17,
+    "rate_5_1_arm": 5.295,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-11-06",
+    "rate_30yr_fixed": 6.22,
+    "rate_5_1_arm": 5.345,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-11-13",
+    "rate_30yr_fixed": 6.24,
+    "rate_5_1_arm": 5.365,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-11-20",
+    "rate_30yr_fixed": 6.26,
+    "rate_5_1_arm": 5.385,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-11-26",
+    "rate_30yr_fixed": 6.23,
+    "rate_5_1_arm": 5.355,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-12-04",
+    "rate_30yr_fixed": 6.19,
+    "rate_5_1_arm": 5.315,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-12-11",
+    "rate_30yr_fixed": 6.22,
+    "rate_5_1_arm": 5.345,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-12-18",
+    "rate_30yr_fixed": 6.21,
+    "rate_5_1_arm": 5.335,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-12-24",
+    "rate_30yr_fixed": 6.18,
+    "rate_5_1_arm": 5.305,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2025-12-31",
+    "rate_30yr_fixed": 6.15,
+    "rate_5_1_arm": 5.275,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-01-08",
+    "rate_30yr_fixed": 6.16,
+    "rate_5_1_arm": 5.285,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-01-15",
+    "rate_30yr_fixed": 6.06,
+    "rate_5_1_arm": 5.185,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-01-22",
+    "rate_30yr_fixed": 6.09,
+    "rate_5_1_arm": 5.215,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-01-29",
+    "rate_30yr_fixed": 6.1,
+    "rate_5_1_arm": 5.225,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-02-05",
+    "rate_30yr_fixed": 6.11,
+    "rate_5_1_arm": 5.235,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-02-12",
+    "rate_30yr_fixed": 6.09,
+    "rate_5_1_arm": 5.215,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-02-19",
+    "rate_30yr_fixed": 6.01,
+    "rate_5_1_arm": 5.135,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-02-26",
+    "rate_30yr_fixed": 5.98,
+    "rate_5_1_arm": 5.105,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-03-05",
+    "rate_30yr_fixed": 6.0,
+    "rate_5_1_arm": 5.125,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-03-12",
+    "rate_30yr_fixed": 6.11,
+    "rate_5_1_arm": 5.235,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-03-19",
+    "rate_30yr_fixed": 6.22,
+    "rate_5_1_arm": 5.345,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-03-26",
+    "rate_30yr_fixed": 6.38,
+    "rate_5_1_arm": 5.505,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-04-02",
+    "rate_30yr_fixed": 6.46,
+    "rate_5_1_arm": 5.585,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-04-09",
     "rate_30yr_fixed": 6.37,
-    "rate_5_1_arm": 5.5,
+    "rate_5_1_arm": 5.495,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-04-16",
+    "rate_30yr_fixed": 6.3,
+    "rate_5_1_arm": 5.425,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-04-23",
+    "rate_30yr_fixed": 6.23,
+    "rate_5_1_arm": 5.355,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-04-30",
+    "rate_30yr_fixed": 6.3,
+    "rate_5_1_arm": 5.425,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-05-07",
+    "rate_30yr_fixed": 6.37,
+    "rate_5_1_arm": 5.495,
     "arm_source": "derived"
   }
 ]
