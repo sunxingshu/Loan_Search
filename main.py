@@ -113,7 +113,8 @@ def main(dry_run: bool = False, output_file: str | None = None) -> None:
 
     # ── 6. Compose email ─────────────────────────────────────────
     log("\n[6/7] Composing email...")
-    html = compose_email(
+    is_preview = dry_run or bool(output_file)
+    html, chart_bytes = compose_email(
         config=config,
         loan_state=loan_state,
         current_rates=current_rates,
@@ -125,8 +126,11 @@ def main(dry_run: bool = False, output_file: str | None = None) -> None:
         amount_scenarios=amount_scenarios,
         action_text=action_text,
         draft_email=draft,
+        preview=is_preview,
     )
-    log(f"      HTML size: {len(html):,} chars  ✓")
+    chart_kb = len(chart_bytes) // 1024 if chart_bytes else 0
+    log(f"      HTML size:  {len(html):,} chars")
+    log(f"      Chart PNG:  {chart_kb} KB  ({'CID attachment' if not is_preview else 'base64 preview'})")
 
     # ── 7. Send or save ──────────────────────────────────────────
     log("\n[7/7] Sending...")
@@ -144,15 +148,18 @@ def main(dry_run: bool = False, output_file: str | None = None) -> None:
 
     gmail_user = os.getenv("GMAIL_USER", "")
     gmail_password = os.getenv("GMAIL_APP_PASSWORD", "")
+    recipients = config["email"]["to"]
+    recipients_display = recipients if isinstance(recipients, list) else [recipients]
     log(f"      GMAIL_USER set:         {'YES (' + gmail_user + ')' if gmail_user else 'NO'}")
     log(f"      GMAIL_APP_PASSWORD set: {'YES' if gmail_password else 'NO'}")
+    log(f"      Recipients:             {', '.join(recipients_display)}")
 
     if not gmail_user or not gmail_password:
         log("ERROR: GMAIL_USER and GMAIL_APP_PASSWORD must be set.")
         sys.exit(1)
 
     log(f"      connecting to smtp.gmail.com:465...")
-    send_email(html, config, gmail_user, gmail_password)
+    send_email(html, chart_bytes, config, gmail_user, gmail_password)
 
     log("")
     log("=" * 60)

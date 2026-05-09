@@ -70,9 +70,9 @@
         </tr>
         <tr>
           <td colspan="2" style="padding-top:18px;">
-            {% if rate_chart_b64 %}
-              <img src="data:image/png;base64,{{ rate_chart_b64 }}"
-                   alt="Rate trend chart"
+            {% if rate_chart_src %}
+              <img src="{{ rate_chart_src }}"
+                   alt="Rate trend chart — 6-month monthly + 4-week zoom"
                    width="536"
                    style="display:block;width:100%;max-width:536px;border-radius:8px;border:1px solid #e2e8f0;" />
               <div style="font-size:11px;color:#94a3b8;margin-top:6px;">

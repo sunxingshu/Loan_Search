@@ -46,18 +46,18 @@ def _monthly_averages(entries: list[dict]) -> list[dict]:
     return result[-6:]
 
 
-def _to_base64(fig) -> str:
+def _to_bytes(fig) -> bytes:
     buf = io.BytesIO()
     fig.savefig(buf, format="png", dpi=130, bbox_inches="tight",
                 facecolor="white", edgecolor="none")
     buf.seek(0)
-    encoded = base64.b64encode(buf.read()).decode("utf-8")
+    data = buf.read()
     buf.close()
-    return encoded
+    return data
 
 
-def generate_chart(history: list[dict], current_rate: float) -> str | None:
-    """Return base64 PNG string, or None if matplotlib is unavailable."""
+def generate_chart(history: list[dict], current_rate: float) -> bytes | None:
+    """Return raw PNG bytes, or None if matplotlib is unavailable."""
     try:
         import matplotlib
         matplotlib.use("Agg")
@@ -208,6 +208,6 @@ def generate_chart(history: list[dict], current_rate: float) -> str | None:
              ha="center", fontsize=7.5, color=MGRAY)
 
     fig.get_layout_engine().set(w_pad=0.1, h_pad=0.1)
-    encoded = _to_base64(fig)
+    png_bytes = _to_bytes(fig)
     plt.close(fig)
-    return encoded
+    return png_bytes

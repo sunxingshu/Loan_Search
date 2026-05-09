@@ -62,7 +62,7 @@
     }
   ],
   "email": {
-    "to": "sunxingshu@gmail.com",
+    "to": ["sunxingshu@gmail.com", "kayla.mzhang@gmail.com"],
     "subject_prefix": "Refi Watch"
   },
   "brokers": {
