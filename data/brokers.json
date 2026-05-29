@@ -1,66 +1,18 @@
 {
-  "last_updated": "2026-04-27",
-  "source": "static_fallback",
+  "last_updated": "2026-05-29",
+  "source": "google_places",
   "brokers": [
     {
-      "name": "RPM Mortgage",
-      "address": "Fremont, CA",
-      "phone": "(925) 478-8630",
-      "website": "https://www.rpmmortgage.com",
-      "email": "contact@rpmmortgage.com",
-      "rating": 4.9,
-      "reviews": 340,
-      "specialty": "ARM, Bay Area refinance",
-      "google_maps": "https://maps.google.com/?q=RPM+Mortgage+Fremont+CA",
-      "contact_source": "static"
-    },
-    {
-      "name": "Bay Equity Home Loans",
-      "address": "Newark / Fremont, CA",
-      "phone": "(415) 370-1711",
-      "website": "https://www.bayequityhomeloans.com",
-      "email": "info@bayequityhomeloans.com",
-      "rating": 4.8,
-      "reviews": 210,
-      "specialty": "Purchase & refi, Bay Area",
-      "google_maps": "https://maps.google.com/?q=Bay+Equity+Home+Loans+Fremont+CA",
-      "contact_source": "static"
-    },
-    {
-      "name": "CrossCountry Mortgage",
-      "address": "San Jose, CA",
-      "phone": "(877) 351-3400",
-      "website": "https://www.crosscountrymortgage.com",
-      "email": "info@crosscountrymortgage.com",
-      "rating": 4.8,
-      "reviews": 185,
-      "specialty": "Conforming, jumbo, ARM",
-      "google_maps": "https://maps.google.com/?q=CrossCountry+Mortgage+San+Jose+CA",
-      "contact_source": "static"
-    },
-    {
-      "name": "Guaranteed Rate",
-      "address": "Oakland / Fremont, CA",
-      "phone": "(773) 290-0505",
-      "website": "https://www.rate.com",
-      "email": "customerservice@rate.com",
-      "rating": 4.7,
-      "reviews": 230,
-      "specialty": "Digital-first, competitive rates",
-      "google_maps": "https://maps.google.com/?q=Guaranteed+Rate+Oakland+CA",
-      "contact_source": "static"
-    },
-    {
-      "name": "LoanDepot",
-      "address": "Fremont, CA",
-      "phone": "(888) 337-6888",
-      "website": "https://www.loandepot.com",
-      "email": "customercare@loandepot.com",
-      "rating": 4.7,
-      "reviews": 160,
-      "specialty": "CA-headquartered, refinance specialists",
-      "google_maps": "https://maps.google.com/?q=LoanDepot+Fremont+CA",
-      "contact_source": "static"
+      "name": "Prasad Bodas, Buy Sell Home Realty",
+      "address": "6167 Jarvis Ave #331, Newark, CA 94560, USA",
+      "phone": "(510) 676-5685",
+      "website": "http://www.buysellhome.net/",
+      "email": "",
+      "rating": 5,
+      "reviews": 62,
+      "specialty": "Mortgage broker",
+      "google_maps": "https://maps.google.com/?place_id=ChIJFR_4yqG_j4ARJhlQ5nOfP8s",
+      "contact_source": "google_places"
     }
   ]
 }
