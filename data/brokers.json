@@ -1,18 +1,42 @@
 {
-  "last_updated": "2026-05-29",
+  "last_updated": "2026-07-03",
   "source": "google_places",
   "brokers": [
     {
-      "name": "Prasad Bodas, Buy Sell Home Realty",
-      "address": "6167 Jarvis Ave #331, Newark, CA 94560, USA",
-      "phone": "(510) 676-5685",
-      "website": "http://www.buysellhome.net/",
-      "email": "",
+      "name": "Chris Freck @ EstaR Mortgage",
+      "address": "2413 Webb Ave Ste E, Alameda, CA 94501, USA",
+      "phone": "(510) 463-1003",
+      "website": "https://www.estarmortgage.com/",
+      "email": "mylender@estarmortgage.com",
       "rating": 5,
-      "reviews": 62,
+      "reviews": 210,
       "specialty": "Mortgage broker",
-      "google_maps": "https://maps.google.com/?place_id=ChIJFR_4yqG_j4ARJhlQ5nOfP8s",
-      "contact_source": "google_places"
+      "google_maps": "https://maps.google.com/?place_id=ChIJD-uQxZWGj4ARMWwdAmr25UY",
+      "contact_source": "google_places+hunter"
+    },
+    {
+      "name": "Diversified Mortgage Group",
+      "address": "39300 Civic Center Dr, Fremont, CA 94538, USA",
+      "phone": "(510) 494-7840",
+      "website": "https://www.divmg.com/",
+      "email": "tbrebner@divmg.com",
+      "rating": 5,
+      "reviews": 135,
+      "specialty": "Mortgage broker",
+      "google_maps": "https://maps.google.com/?place_id=ChIJCUrxa47Aj4ARHd7eQP7YwU0",
+      "contact_source": "google_places+hunter"
+    },
+    {
+      "name": "Kamna Mittal at Guaranteed Rate Affinity (NMLS #926641)",
+      "address": "3340 Walnut Ave Suite 110, Fremont, CA 94538, USA",
+      "phone": "(650) 316-2169",
+      "website": "https://www.grarate.com/KamnaMittal?utm_source=google&utm_medium=organic&utm_campaign=yext&utm_content=2346&adtrk=%7Cseo%7Cgoogle%7Cyext%7C2346%7C",
+      "email": "rhoan.hernandez@grarate.com",
+      "rating": 4.9,
+      "reviews": 88,
+      "specialty": "Mortgage broker",
+      "google_maps": "https://maps.google.com/?place_id=ChIJ3xPt7BG7j4ARwzD4ADHL8NM",
+      "contact_source": "google_places+hunter"
     }
   ]
 }
