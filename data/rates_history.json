@@ -1,11 +1,5 @@
 [
   {
-    "date": "2025-10-02",
-    "rate_30yr_fixed": 6.34,
-    "rate_5_1_arm": 5.465,
-    "arm_source": "derived"
-  },
-  {
     "date": "2025-10-09",
     "rate_30yr_fixed": 6.3,
     "rate_5_1_arm": 5.425,
@@ -309,6 +303,12 @@
     "date": "2026-09-24",
     "rate_30yr_fixed": 7.03,
     "rate_5_1_arm": 6.155,
+    "arm_source": "derived"
+  },
+  {
+    "date": "2026-10-01",
+    "rate_30yr_fixed": 7.28,
+    "rate_5_1_arm": 6.405,
     "arm_source": "derived"
   }
 ]
