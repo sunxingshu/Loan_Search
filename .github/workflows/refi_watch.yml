@@ -1,10 +1,7 @@
-name: Refi Watch — Weekly Email
+name: Refi Watch — Manual Only
 
 on:
-  schedule:
-    # Every Friday at 7:00 AM Pacific Time (15:00 UTC)
-    - cron: "0 15 * * 5"
-  workflow_dispatch:  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:  # Manual trigger only; scheduled runs disabled
 
 permissions:
   contents: write   # Needed to push updated data/ files back to repo
